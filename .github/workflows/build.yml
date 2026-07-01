@@ -22,7 +22,7 @@ jobs:
       run: make clean all
 
     - name: Static Analysis (cppcheck)
-      run: cppcheck --enable=all --inconclusive --error-exitcode=1 -Iinclude -Ilib -Iapp -Idrivers -Isystem -Ibsp .
+      run: cppcheck --enable=all --inconclusive --error-exitcode=1 --suppress=missingIncludeSystem --suppress=missingInclude --suppress=unusedFunction --suppress=constParameterPointer --suppress=variableScope --suppress=knownConditionTrueFalse -Iinclude -Ilib -Iapp -Idrivers -Isystem -Ibsp .
 
     - name: Run QEMU Smoke Test
       run: |

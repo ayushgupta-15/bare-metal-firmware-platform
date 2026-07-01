@@ -59,7 +59,7 @@ status_t gpio_toggle(GPIO_TypeDef *port, uint16_t pin_mask)
     return STATUS_OK;
 }
 
-bool gpio_read(GPIO_TypeDef *port, uint16_t pin)
+bool gpio_read(const GPIO_TypeDef *port, uint16_t pin)
 {
     if (!port) return false;
     

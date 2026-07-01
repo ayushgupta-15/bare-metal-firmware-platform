@@ -29,13 +29,13 @@ static void mem_poison(void *ptr, size_t size, uint8_t val) {
 status_t heap_init(void)
 {
     uint8_t *heap_start = (uint8_t *)&_heap_start;
-    uint8_t *heap_end = (uint8_t *)&_heap_end;
+    const uint8_t *heap_end = (uint8_t *)&_heap_end;
     
-    if (heap_start >= heap_end) {
+    if ((uintptr_t)heap_start >= (uintptr_t)heap_end) {
         return STATUS_ERROR;
     }
     
-    size_t total_size = (size_t)(heap_end - heap_start);
+    size_t total_size = (size_t)((uintptr_t)heap_end - (uintptr_t)heap_start);
     if (total_size <= sizeof(heap_block_t)) {
         return STATUS_ERROR;
     }

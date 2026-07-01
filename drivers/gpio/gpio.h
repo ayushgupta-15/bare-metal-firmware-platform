@@ -53,7 +53,7 @@ status_t gpio_init(GPIO_TypeDef *port, uint16_t pin_mask, gpio_mode_t mode,
 
 status_t gpio_write(GPIO_TypeDef *port, uint16_t pin_mask, bool state);
 status_t gpio_toggle(GPIO_TypeDef *port, uint16_t pin_mask);
-bool gpio_read(GPIO_TypeDef *port, uint16_t pin);
+bool gpio_read(const GPIO_TypeDef *port, uint16_t pin);
 status_t gpio_set_af(GPIO_TypeDef *port, uint16_t pin_mask, uint8_t af);
 
 #endif /* GPIO_H */
