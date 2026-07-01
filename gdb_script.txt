@@ -1,0 +1,5 @@
+target remote :1234
+break main
+continue
+info registers pc
+quit

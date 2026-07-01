@@ -1,0 +1,24 @@
+qemu-system-arm -M netduinoplus2 -kernel build/firmware.elf -nographic
+[INFO] Booting...
+[INFO] Clock Initialized
+[INFO] GPIO Initialized
+[INFO] UART Initialized
+[INFO] Interrupt-driven UART Active
+[INFO] Heap Initialized
+[INFO] Timer Initialized and Started (500ms)
+[INFO] Alloc p1
+[INFO] Alloc p2
+[INFO] Freed p1
+[INFO] Alloc p3
+[INFO] Freed all
+[INFO] Starting 1000-iteration heap stress test...
+[INFO] Stress test PASSED: No fragmentation leak.
+[INFO] System Idle...
+[INFO] Timer Event
+[INFO] Timer Event
+[INFO] Timer Event
+[INFO] Timer Event
+[INFO] Timer Event
+[INFO] Timer Event
+[INFO] Timer Event
+[INFO] Timer Event

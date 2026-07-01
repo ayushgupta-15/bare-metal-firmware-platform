@@ -1,0 +1,10 @@
+# Build output
+*.o
+*.elf
+*.bin
+*.map
+build/
+
+# QEMU/Debugger
+*.log
+.gdbinit
