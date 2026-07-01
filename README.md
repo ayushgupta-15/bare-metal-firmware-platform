@@ -1,4 +1,4 @@
-![Cortex-M4 Firmware Platform](images/banner.png)
+![Cortex-M4 Firmware Platform](images/banner.svg)
 
 # Bare-Metal Firmware Platform
 
@@ -256,6 +256,28 @@ The platform leverages advanced, OS-level debugging tactics without the overhead
 - **Memory Poisoning**: Fresh allocations are painted with `0xCD`. Freed blocks are scrubbed with `0xEF`. This allows developers to trivially catch use-after-free bugs in GDB.
 - **Nested Critical Sections**: Using a `PRIMASK` nesting counter ensures concurrent ring buffer interactions between thread-mode and Handler-mode never deadlock or accidentally re-enable interrupts prematurely.
 - **Interrupt Vector Alignment**: Complete manual alignment of the vector table using `.space` paddings guarantees no hard faults via pointer misalignment.
+
+---
+
+## 🧪 Quality Assurance & CI
+
+### Continuous Integration (GitHub Actions)
+The repository uses a `.github/workflows/build.yml` pipeline that strictly enforces stability on every commit:
+- Complete `arm-none-eabi-gcc` cross-compilation matrix.
+- Background QEMU emulator execution triggering the 1,000-iteration heap stress test.
+
+### Static Analysis
+All C code is passed through aggressive `cppcheck` validation:
+```bash
+cppcheck --enable=all --inconclusive --error-exitcode=1 -Iinclude -Ilib -Idrivers -Isystem .
+```
+Additionally, the build enforces strict compiler flags to capture undefined behavior:
+- `-Wall`
+- `-Wextra`
+- `-Werror` (Treats all warnings as fatal errors)
+
+### Code Formatting
+The repository utilizes an LLVM-based `.clang-format` profile tailored for embedded systems, enforcing a consistent 120-column limit, strict indentation, and aligned structure initialization.
 
 ---
 

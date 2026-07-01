@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 500" width="1600" height="500">
+    <defs>
+        <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0F172A" />
+            <stop offset="100%" stop-color="#1E293B" />
+        </linearGradient>
+        <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.15" />
+            <stop offset="100%" stop-color="#818CF8" stop-opacity="0.3" />
+        </linearGradient>
+        <filter id="blur">
+            <feGaussianBlur stdDeviation="20" />
+        </filter>
+        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#334155" stroke-width="1" opacity="0.5"/>
+            <circle cx="60" cy="60" r="1.5" fill="#475569" />
+        </pattern>
+        <pattern id="circuit" width="300" height="300" patternUnits="userSpaceOnUse">
+            <path d="M 50 100 L 150 100 M 100 50 L 100 150 M 150 100 L 180 70 L 280 70 M 50 100 L 20 130 L 0 130 M 100 150 L 70 180 L 70 300 M 100 50 L 130 20 L 130 0" fill="none" stroke="#0EA5E9" stroke-width="1.5" stroke-opacity="0.3"/>
+            <circle cx="150" cy="100" r="3" fill="#0EA5E9" opacity="0.5"/>
+            <circle cx="50" cy="100" r="3" fill="#0EA5E9" opacity="0.5"/>
+            <circle cx="100" cy="50" r="3" fill="#0EA5E9" opacity="0.5"/>
+            <circle cx="100" cy="150" r="3" fill="#0EA5E9" opacity="0.5"/>
+            <circle cx="180" cy="70" r="3" fill="#0EA5E9" opacity="0.5"/>
+        </pattern>
+    </defs>
+    
+    <rect width="100%" height="100%" fill="url(#bg-grad)" />
+    <rect width="100%" height="100%" fill="url(#grid)" />
+    <rect width="100%" height="100%" fill="url(#circuit)" />
+    <circle cx="800" cy="220" r="300" fill="url(#glow)" filter="url(#blur)" />
+    
+    <!-- Central Chip -->
+    <g transform="translate(700, 120)">
+        <!-- Outer package -->
+        <rect x="0" y="0" width="200" height="200" rx="12" fill="#020617" stroke="#38BDF8" stroke-width="3" />
+        <rect x="15" y="15" width="170" height="170" rx="6" fill="#0F172A" />
+        <!-- Pins -->
+        <!-- Left -->
+        <path d="M0 30 L-25 30 M0 50 L-25 50 M0 70 L-25 70 M0 90 L-25 90 M0 110 L-25 110 M0 130 L-25 130 M0 150 L-25 150 M0 170 L-25 170" stroke="#94A3B8" stroke-width="5" />
+        <!-- Right -->
+        <path d="M200 30 L225 30 M200 50 L225 50 M200 70 L225 70 M200 90 L225 90 M200 110 L225 110 M200 130 L225 130 M200 150 L225 150 M200 170 L225 170" stroke="#94A3B8" stroke-width="5" />
+        <!-- Top -->
+        <path d="M30 0 L30 -25 M50 0 L50 -25 M70 0 L70 -25 M90 0 L90 -25 M110 0 L110 -25 M130 0 L130 -25 M150 0 L150 -25 M170 0 L170 -25" stroke="#94A3B8" stroke-width="5" />
+        <!-- Bottom -->
+        <path d="M30 200 L30 225 M50 200 L50 225 M70 200 L70 225 M90 200 L90 225 M110 200 L110 225 M130 200 L130 225 M150 200 L150 225 M170 200 L170 225" stroke="#94A3B8" stroke-width="5" />
+        <!-- Pin 1 Dot -->
+        <circle cx="35" cy="35" r="7" fill="#475569" />
+        
+        <!-- Text -->
+        <text x="100" y="105" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="800" font-size="38" fill="#F8FAFC" letter-spacing="1" text-anchor="middle">STM32</text>
+        <text x="100" y="140" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="600" font-size="22" fill="#94A3B8" letter-spacing="4" text-anchor="middle">CORTEX-M4</text>
+    </g>
+
+    <!-- Banner Text -->
+    <g text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+        <text x="800" y="415" font-size="44" font-weight="800" fill="#F8FAFC" letter-spacing="2">Bare-Metal Firmware Platform</text>
+        <text x="800" y="460" font-size="20" font-weight="600" fill="#38BDF8" letter-spacing="3">STM32F405 • CORTEX-M4 • REGISTER-LEVEL DRIVERS • INTERRUPT-DRIVEN BSP • QEMU VALIDATED</text>
+    </g>
+</svg>

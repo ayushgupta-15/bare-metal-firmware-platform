@@ -1,0 +1,46 @@
+name: Firmware CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install ARM Toolchain and QEMU
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi qemu-system-arm cppcheck
+
+    - name: Build Firmware
+      run: make clean all
+
+    - name: Static Analysis (cppcheck)
+      run: cppcheck --enable=all --inconclusive --error-exitcode=1 -Iinclude -Ilib -Iapp -Idrivers -Isystem -Ibsp .
+
+    - name: Run QEMU Smoke Test
+      run: |
+        # Run QEMU in the background and pipe output to a file
+        make run_qemu > qemu_out.txt &
+        QEMU_PID=$!
+        
+        # Wait 3 seconds for boot and heap/timer tests to execute
+        sleep 3
+        
+        # Kill QEMU
+        kill $QEMU_PID || true
+        
+        # Display output
+        cat qemu_out.txt
+        
+        # Verify essential initialization occurred
+        grep "Booting..." qemu_out.txt
+        grep "Heap Initialized" qemu_out.txt
+        grep "Timer Initialized" qemu_out.txt
+        grep "Stress test PASSED" qemu_out.txt
